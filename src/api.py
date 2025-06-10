@@ -20,4 +20,4 @@ class HeadHunterAPI(Parser):
     def get_vacancies(self, search_query):
         params = {"text": search_query, "area": 1}
         response = requests.get(self.url, headers=self.headers, params=params)
-        return response.json()
+        return response.json()["items"]

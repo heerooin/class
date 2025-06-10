@@ -27,7 +27,7 @@ def user_interaction():
                     salary_from = 'Зарплата не указана'
                 description = vacancy_info.get('description', 'Описание отсутствует')
                 vacancies_list.append({'name': name, 'alternate_url': alternate_url, 'salary_from': salary_from, 'description': description})
-            elif isinstance(vacancy_info, Vacancy):
+            elif isinstance(vacancy_info, Vacancies):
                 vacancies_list.append(vacancy_info)
 
         filtered_vacancies = filter_vacancies(vacancies_list, filter_words)
