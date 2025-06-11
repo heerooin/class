@@ -9,7 +9,10 @@ class TestHeadHunterAPI(unittest.TestCase):
         mock_requests_get.return_value.json.return_value = mock_response
         hh_api = HeadHunterAPI()
         result = hh_api.get_vacancies('Python Developer')
-        self.assertEqual(result, mock_response)
+        self.assertEqual(result, mock_response['items'])
+        mock_requests_get.assert_called_once()
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]['name'], 'Python Developer')
 
 if __name__ == '__main__':
     unittest.main()

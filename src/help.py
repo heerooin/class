@@ -24,9 +24,17 @@ def get_vacancies_by_salary(vacancies, salary):
     else:
         print("Неверный формат диапазона зарплат")
         return vacancies
-    
-    return [vacancy for vacancy in vacancies if
-            vacancy.get('salary_from', 0) >= min_salary and vacancy.get('salary_from', float('inf')) <= max_salary]
+
+    filtered_vacancies = []
+    for vacancy in vacancies:
+        salary_from = vacancy.get('salary_from')
+        try:
+            salary_from = int(salary_from) if salary_from is not None else 0
+        except (ValueError, TypeError):
+            continue
+        if min_salary <= salary_from <= max_salary:
+            filtered_vacancies.append(vacancy)
+    return filtered_vacancies
 
 def sort_vacancies(vacancies):
     return sorted(vacancies, key=lambda vacancy: vacancy.get('salary_from', 0), reverse=True)
