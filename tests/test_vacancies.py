@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from src.vacancies import JSONSaver
+from src.saver import JSONSaver
 from src.vacancies import Vacancies
 
 class TestVacancyClass(unittest.TestCase):

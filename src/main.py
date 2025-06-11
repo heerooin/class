@@ -3,7 +3,6 @@ from src.vacancies import Vacancies
 from src.help import print_vacancies, filter_vacancies, get_vacancies_by_salary, sort_vacancies, get_top_vacancies
 
 def user_interaction():
-    platforms = ["HeadHunter"]
     search_query = input("Введите поисковый запрос: ")
     top_n = int(input("Введите количество вакансий для вывода в топ N: "))
     filter_words = input("Введите ключевые слова для фильтрации вакансий: ").split()
@@ -14,9 +13,9 @@ def user_interaction():
 
     print("Ответ API:", hh_vacancies)
 
-    if hh_vacancies and 'items' in hh_vacancies:
+    if hh_vacancies:
         vacancies_list = []
-        for vacancy_info in hh_vacancies['items']:
+        for vacancy_info in hh_vacancies:
             if isinstance(vacancy_info, dict):
                 name = vacancy_info.get('name', 'Не указано')
                 alternate_url = vacancy_info.get('alternate_url', 'Не указано')
